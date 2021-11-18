@@ -1,0 +1,41 @@
+TYPO3:
+  CMS:
+    Form:
+      formManager:
+        translationFile:
+          100: 'EXT:form/Resources/Private/Language/Database.xlf'
+          200: 'EXT:othman_saveformtodb/Resources/Private/Language/locallang_be.xlf'
+      prototypes:
+        standard:
+          formEditor:
+            translationFile:
+              100: 'EXT:form/Resources/Private/Language/Database.xlf'
+              200: 'EXT:othman_saveformtodb/Resources/Private/Language/locallang_be.xlf'
+          formElementsDefinition:
+            Form:
+              formEditor:
+                iconIdentifier: 'content-elements-mailform'
+                editors:
+                  900:
+                    selectOptions:
+                      1636076020:
+                        iconIdentifier: form-finisher
+                        value: SaveFormToDb
+                        label: formEditor.elements.Form.finisher.SaveToDatabase.editor.header.label
+                propertyCollections:
+                  finishers:
+                    1636076020:
+                      identifier: SaveFormToDb
+                      editors:
+                        10:
+                          identifier: header
+                          templateName: Inspector-CollectionElementHeaderEditor
+                          label: formEditor.elements.Form.finisher.SaveToDatabase.editor.header.label
+                        9999:
+                          identifier: removeButton
+                          templateName: Inspector-RemoveElementEditor
+          finishersDefinition:
+            SaveFormToDb:
+              implementationClassName: 'Othman\SaveFormToDb\Domain\Finishers\SaveFormToDbFinisher'
+              formEditor:
+                iconIdentifier:  form-finisher

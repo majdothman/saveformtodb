@@ -1,0 +1,24 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:be.container
+    includeCssFiles="{1: 'EXT:othman_saveformtodb/Resources/Public/css/saveformtodb.css'}"
+    includeJsFiles="{1: 'EXT:othman_saveformtodb/Resources/Public/js/saveformtodb.min.js'}">
+    <div>
+        <div class="module-docheader">
+            <div class="module-docheader-bar module-docheader-bar-navigation t3js-module-docheader-bar t3js-module-docheader-bar-navigation row" style="height: auto;">
+                <div class="module-docheader-bar-column-left col-xs-12 col-sm-4 col-md-3">
+                    <div class="form-inline row">
+                        <f:render section="TopButtons"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="module-body t3js-module-body" style="padding-top: 89px">
+        <div id="typo3-othman_saveformtodb" class="typo3-othman_saveformtodb">
+            <div id="typo3-inner-docbody" style="padding: 2px !important;">
+                <f:render section="Content" arguments="{_all}"/>
+            </div>
+        </div>
+    </div>
+</f:be.container>
+</html>

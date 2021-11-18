@@ -1,0 +1,8 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          finishersDefinition:
+            SaveFormToDb:
+              implementationClassName: 'Othman\SaveFormToDb\Domain\Finishers\SaveFormToDbFinisher'

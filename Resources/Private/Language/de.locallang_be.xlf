@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2021-11-05T14:56:51Z" product-name="othman_saveformtodb">
+		<header />
+		<body>
+			<trans-unit id="formEditor.elements.Form.finisher.SaveToDatabase.editor.header.label">
+				<target>In DB speichern</target>
+			</trans-unit>
+		<!--	toolbar header 	-->
+			<trans-unit id="toolbar.back">
+				<target>Zurück</target>
+			</trans-unit>
+			<trans-unit id="toolbar.csvexport">
+				<target>CSV-Export</target>
+			</trans-unit>
+		<!--	body	-->
+			<trans-unit id="savetodb.configuration">
+				<target>Konfigurationen</target>
+			</trans-unit>
+			<trans-unit id="savetodb.configuration.selectfields">
+				<target>Wählen Sie die sichtbaren Felder aus</target>
+			</trans-unit>
+			<trans-unit id="savetodb.configuration.identifier">
+				<target>Identifier [TYPE]</target>
+			</trans-unit>
+			<trans-unit id="savetodb.configuration.label">
+				<target>Label</target>
+			</trans-unit>
+			<trans-unit id="savetodb.configuration.enable">
+				<target>Aktivieren</target>
+			</trans-unit>
+			<trans-unit id="savetodb.configuration.save">
+				<target>Speichern</target>
+			</trans-unit>
+			<trans-unit id="savetodb.configuration.close">
+				<target>Abbrechen</target>
+			</trans-unit>
+			<trans-unit id="savetodb.index.no-emails">
+				<target>Es gibt keine E-Mails in Datebank</target>
+			</trans-unit>
+			<trans-unit id="savetodb.index.number-of-emails">
+				<target>Anzahl E-Mails</target>
+			</trans-unit>
+			<trans-unit id="savetodb.index.show-all-emails">
+				<target>alle E-Mails in diesem Formular anzeigen</target>
+			</trans-unit>
+			<trans-unit id="savetodb.listbyformidentifier.emails-in">
+				<target>E-Mails in</target>
+			</trans-unit>
+			<trans-unit id="savetodb.listbyformidentifier.show-email-content">
+				<target>E-Mail-Inhalt anzeigen</target>
+			</trans-unit>
+			<trans-unit id="savetodb.listbyformidentifier.delete-this-email">
+				<target>Diese E-Mail löschen</target>
+			</trans-unit>
+			<trans-unit id="savetodb.listbyformidentifier.print">
+				<target>Ausdrucken</target>
+			</trans-unit>
+			<trans-unit id="savetodb.listbyformidentifier.print.print-header">
+				<target>Geben Sie hier die Kopfzeile der zu druckenden Seite ein.</target>
+			</trans-unit>
+			<trans-unit id="savetodb.listbyformidentifier.print.print-footer">
+				<target>Geben Sie hier die Fußzeile der zu druckenden Seite ein.</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

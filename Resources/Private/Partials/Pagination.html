@@ -1,0 +1,45 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+      xmlns:othman="http://typo3.org/ns/Othman/SaveFormToDb/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+<f:if condition="{paginator.numberOfPages} > 1">
+    <nav class="text-right" aria-label="pagebrowser" style="margin: 10px">
+        <ul class="f3-widget-paginator pagination justify-content-end">
+            <f:if condition="{pagination.previousPageNumber} && {pagination.previousPageNumber} >= {pagination.firstPageNumber}">
+                <li class="previous">
+                    <a href="{othman:pagination.uri(arguments:'{currentPage:pagination.previousPageNumber}',name:name)}" title="previous" class="page-link">
+                        <core:icon identifier="actions-chevron-double-left" size="small"/>
+                    </a>
+                </li>
+            </f:if>
+            <f:if condition="{pagination.hasLessPages}">
+                <li class="page-item">…</li>
+            </f:if>
+            <f:for each="{pagination.allPageNumbers}" as="page">
+                <f:if condition="{page} == {paginator.currentPageNumber}">
+                    <f:then>
+                        <li class="page-item current active">
+                            <span class="page-link">{page}</span>
+                        </li>
+                    </f:then>
+                    <f:else>
+                        <li class="page-item">
+                            <a href="{othman:pagination.uri(arguments:'{currentPage:page}',name:name)}" class="page-link">{page}</a>
+                        </li>
+                    </f:else>
+                </f:if>
+            </f:for>
+            <f:if condition="{pagination.hasMorePages}">
+                <li class="page-item">…</li>
+            </f:if>
+            <f:if condition="{pagination.nextPageNumber} && {pagination.nextPageNumber} <= {pagination.lastPageNumber}">
+                <li class="next">
+                    <a href="{othman:pagination.uri(arguments:'{currentPage:pagination.nextPageNumber}',name:name)}" title="next" class="page-link">
+                        <core:icon identifier="actions-chevron-double-right" size="small"/>
+                    </a>
+                </li>
+            </f:if>
+        </ul>
+    </nav>
+</f:if>
+</html>

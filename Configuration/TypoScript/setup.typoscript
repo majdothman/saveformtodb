@@ -1,0 +1,9 @@
+plugin.tx_form.settings.yamlConfigurations {
+  1636072895 = EXT:othman_saveformtodb/Configuration/Yaml/BaseSetup.yaml
+  1636072896 = EXT:othman_saveformtodb/Configuration/Yaml/FormEditorSetup.yaml
+
+}
+module.tx_form.settings.yamlConfigurations {
+  1636072897 = EXT:othman_saveformtodb/Configuration/Yaml/BaseSetup.yaml
+  1636072898 = EXT:othman_saveformtodb/Configuration/Yaml/FormEditorSetup.yaml
+}

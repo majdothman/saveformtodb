@@ -1,0 +1,10 @@
+# cat=Permission; type=boolean; label=Only admin can delete
+onlyAdminCanDelete = 1
+# cat=pagination; type=string; label=Pagination
+itemsPerPage = 25
+
+# cat=CSV; type=string; label=Csv delimiter
+delimiter = ;
+
+# cat=CSV; type=string; label=Csv Default Fields
+defaultCsvFields = uid,crdate

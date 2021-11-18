@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" datatype="plaintext" original="messages" date="2021-11-05T14:56:51Z" product-name="othman_saveformtodb">
+		<header />
+		<body>
+			<trans-unit id="formEditor.elements.Form.finisher.SaveToDatabase.editor.header.label">
+				<source>Save To DB</source>
+			</trans-unit>
+		<!--	toolbar header 	-->
+			<trans-unit id="toolbar.back">
+				<source>Back</source>
+			</trans-unit>
+			<trans-unit id="toolbar.csvexport">
+				<source>Csv export</source>
+			</trans-unit>
+		<!--	body	-->
+			<trans-unit id="savetodb.configuration">
+				<source>Configuration</source>
+			</trans-unit>
+			<trans-unit id="savetodb.configuration.selectfields">
+				<source>Select the visible fields</source>
+			</trans-unit>
+			<trans-unit id="savetodb.configuration.identifier">
+				<source>Identifier [TYPE]</source>
+			</trans-unit>
+			<trans-unit id="savetodb.configuration.label">
+				<source>Label</source>
+			</trans-unit>
+			<trans-unit id="savetodb.configuration.enable">
+				<source>Enable</source>
+			</trans-unit>
+			<trans-unit id="savetodb.configuration.save">
+				<source>Save</source>
+			</trans-unit>
+			<trans-unit id="savetodb.configuration.close">
+				<source>Close</source>
+			</trans-unit>
+			<trans-unit id="savetodb.index.no-emails">
+				<source>There is no Emails in DB</source>
+			</trans-unit>
+			<trans-unit id="savetodb.index.number-of-emails">
+				<source>Number of Emails</source>
+			</trans-unit>
+			<trans-unit id="savetodb.index.show-all-emails">
+				<source>show all emails in this Form</source>
+			</trans-unit>
+			<trans-unit id="savetodb.listbyformidentifier.emails-in">
+				<source>Emails in</source>
+			</trans-unit>
+			<trans-unit id="savetodb.listbyformidentifier.show-email-content">
+				<source>Show Email content</source>
+			</trans-unit>
+			<trans-unit id="savetodb.listbyformidentifier.delete-this-email">
+				<source>Delete this Email</source>
+			</trans-unit>
+			<trans-unit id="savetodb.listbyformidentifier.print">
+				<source>Print</source>
+			</trans-unit>
+			<trans-unit id="savetodb.listbyformidentifier.print.print-header">
+				<source>Type here the header of the page to print.</source>
+			</trans-unit>
+			<trans-unit id="savetodb.listbyformidentifier.print.print-footer">
+				<source>Type here the footer of the page to print.</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

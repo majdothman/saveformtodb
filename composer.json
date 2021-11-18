@@ -1,0 +1,40 @@
+{
+    "name": "othman/saveformtodb",
+    "type": "typo3-cms-extension",
+    "description": "TYPO3 Extension: Form finisher to save Form in Database",
+    "keywords": [
+        "TYPO3",
+        "TYPO3 CMS",
+        "extension",
+        "form",
+        "save form",
+        "TYPO3 form",
+        "Save Form in database"
+    ],
+    "homepage": "https://github.com/majdothman/saveformtodb",
+    "authors": [
+        {
+            "name": "Majd Othman",
+            "role": "Developer"
+        }
+    ],
+    "license": [
+        "GPL-2.0-or-later"
+    ],
+    "require": {
+        "typo3/cms-core": "^10.4 || ^11.5"
+    },
+    "replace": {
+        "othman_saveformtodb": "self.version"
+    },
+    "autoload": {
+        "psr-4": {
+            "Othman\\SaveFormToDb\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "othman_saveformtodb"
+        }
+    }
+}

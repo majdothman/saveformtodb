@@ -1,0 +1,239 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+      xmlns:othman="http://typo3.org/ns/Othman/SaveFormToDb/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+<f:layout name="Default"/>
+
+<f:section name="TopButtons">
+    <div class="btn-toolbar" role="toolbar" aria-label="">
+        <f:link.action controller="FormData" class="btn btn-default btn-sm " action="index">
+            <core:icon identifier="actions-arrow-down-left" size="small"/>
+            <f:translate key="LLL:EXT:othman_saveformtodb/Resources/Private/Language/locallang_be.xlf:toolbar.back"/>
+        </f:link.action>
+        <f:link.action controller="FormData" action="csvExport" arguments="{formIdentifier:formIdentifier, formIdentifierPath: formIdentifierPath}" class="btn btn-default btn-sm ">
+            <core:icon identifier="actions-file-csv-download" size="small"/>
+            <f:translate key="LLL:EXT:othman_saveformtodb/Resources/Private/Language/locallang_be.xlf:toolbar.csvexport"/>
+        </f:link.action>
+    </div>
+</f:section>
+<f:section name="Content">
+    <f:variable name="numberOfConfField" value="0"/>
+    <f:for each="{configuration}" as="iteratorConfField">
+        <f:if condition=" {iteratorConfField.enabled}">
+            <f:variable name="numberOfConfField" value="{numberOfConfField+1}"/>
+        </f:if>
+    </f:for>
+    <h1>
+        <f:translate key="LLL:EXT:othman_saveformtodb/Resources/Private/Language/locallang_be.xlf:savetodb.listbyformidentifier.emails-in"/>
+        {formIdentifier} ({formDatas -> f:count()})
+    </h1>
+    <f:if condition="{formDatas}">
+        <f:else>
+            <div class="row">
+                <div class="col-md-12">
+                    <p> There is no Email</p>
+                </div>
+            </div>
+        </f:else>
+        <f:then>
+            <f:if condition="!{configuration}">
+                <div class="row col-md-8 text-danger">
+                    <dl>
+                        <dt>Something is wrong in this configuration</dt>
+                        <dd> * please click on Configuration button then Reset</dd>
+                        <dd> * or this {formIdentifierPath} not found</dd>
+                    </dl>
+                </div>
+            </f:if>
+            <f:render partial="Configuration" arguments="{formIdentifier:formIdentifier, formIdentifierPath: formIdentifierPath, formFields:formFields , configuration: configuration }"/>
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <!-- open modal -->
+
+                    <a href="#" class="btn btn-sm btn-default"
+                       title="{f:translate(key: 'LLL:EXT:othman_saveformtodb/Resources/Private/Language/locallang_be.xlf:savetodb.configuration')}"
+                       data-toggle="modal" data-target="#updateConfigurationModal"
+                       data-bs-toggle="modal" data-bs-target="#updateConfigurationModal">
+                        <core:icon identifier="actions-cog" size="small"/>
+                        <strong>
+                            <f:translate key="LLL:EXT:othman_saveformtodb/Resources/Private/Language/locallang_be.xlf:savetodb.configuration"/>
+                        </strong>
+                    </a>
+                </div>
+            </div>
+            <br>
+            <div class="fields-header">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-3 text-dark">
+                                Date
+                            </div>
+                            <div class="col-md-9">
+                                <div class="w-100">
+                                    <f:if condition="{configuration}">
+                                        <f:then>
+                                            <f:for each="{configuration}" as="confField" iteration="iteratorConfField">
+                                                <f:if condition=" {confField.enabled}">
+                                                    <div class="{f:if(condition: '{iteratorConfField.cycle} % 2 != 0',then: 'text-dark-light')}" style="width: {100 / numberOfConfField-1}%;float: left">
+                                                        <f:if condition="{confField.label}">
+                                                            <f:then>{confField.label}</f:then>
+                                                            <f:else>{confField.identifier}</f:else>
+                                                        </f:if>
+                                                    </div>
+                                                </f:if>
+                                            </f:for>
+                                        </f:then>
+                                    </f:if>
+                                    <div style="clear: both"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <othman:pagination.paginate objects="{formDatas}" as="downloadsPaginator" itemsPerPage="{extConf.itemsPerPage}">
+                            <f:for each="{downloadsPaginator.paginator.paginatedItems}" as="formData" iteration="formDataIterator">
+                                <div class="panel-heading fadeOut {f:if(condition: '{formDataIterator.cycle} % 2 == 0',then: 'bg-light')}" role="tab" id="heading-{formDataIterator.cycle}" style="">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <h4 class="panel-title">
+                                                <!-- compatiable with bootstrap 3 & 5-->
+                                                <a class="w-100" role="button"
+                                                   data-toggle="collapse" data-parent="#accordion" href="#collapse-{formDataIterator.cycle}"
+                                                   data-bs-toggle="collapse" data-bs-target="#collapse-{formDataIterator.cycle}"
+                                                   aria-expanded="false" aria-controls="collapse-{formDataIterator.cycle}">
+                                                    <f:if condition="{configuration}">
+                                                        <div class="row">
+                                                            <div class="col-md-3 text-dark">
+                                                                {f:format.date(date: '{formData.crdate}',format: 'd.m.Y - H:i')}
+                                                            </div>
+                                                            <div class="col-md-9">
+                                                                <div class="w-100">
+                                                                    <f:for each="{configuration}" as="confField" iteration="iteratorConfField">
+                                                                        <f:if condition=" {confField.enabled}">
+                                                                            <div class="{f:if(condition: '{iteratorConfField.cycle} % 2 == 0',then: 'text-dark')}"
+                                                                                 style="width: {100 / numberOfConfField-1}%;float: left;word-wrap: break-word;">
+                                                                                <f:format.crop maxCharacters="100">{formData.values.{confField.identifier}.value}</f:format.crop>
+                                                                            </div>
+                                                                        </f:if>
+                                                                    </f:for>
+                                                                    <div style="clear: both"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </f:if>
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div class="col-md-2 text-right">
+                                            <a class="btn btn-default btn-sm" role="button"
+                                               title="{f:translate(key: 'LLL:EXT:othman_saveformtodb/Resources/Private/Language/locallang_be.xlf:savetodb.listbyformidentifier.show-email-content')}"
+                                               data-toggle="collapse" data-parent="#accordion" href="#collapse-{formDataIterator.cycle}"
+                                               data-bs-toggle="collapse" data-bs-target="#collapse-{formDataIterator.cycle}"
+                                               aria-expanded="false"
+                                               aria-controls="collapse-{formDataIterator.cycle}" style="margin-right: 5px">
+                                                <core:icon identifier="actions-view-page" size="small"/>
+                                            </a>
+
+                                            <f:if condition="{extConf.onlyAdminCanDelete} == 1">
+                                                <f:then>
+                                                    <f:if condition="{beUser.admin} == 1">
+                                                        <f:render section="DeleteButton" arguments="{formData:formData}"/>
+                                                    </f:if>
+                                                </f:then>
+                                                <f:else>
+                                                    <f:render section="DeleteButton" arguments="{formData:formData}"/>
+                                                </f:else>
+                                            </f:if>
+                                            <a class="pull-right collapsed" role="button"
+                                               data-toggle="collapse" data-parent="#accordion" href="#collapse-{formDataIterator.cycle}"
+                                               data-bs-toggle="collapse" data-bs-target="#collapse-{formDataIterator.cycle}"
+                                               aria-expanded="false"
+                                               aria-controls="collapse-{formDataIterator.cycle}">
+                                                <span class="caret" style="margin-top: 10px;"></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="collapse-{formDataIterator.cycle}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-{formDataIterator.cycle}">
+                                    <div class="panel-body">
+                                        <label class="text-area-box stacked">
+                                            <textarea class="print-header print-textarea" name="print-header" rows="1"
+                                                      oninput="this.parentNode.dataset.value = this.value"
+                                                      placeholder="{f:translate(key: 'LLL:EXT:othman_saveformtodb/Resources/Private/Language/locallang_be.xlf:savetodb.listbyformidentifier.print.print-header')}"></textarea>
+                                        </label>
+                                        <table class="table table-striped table-hover" id="table-{formDataIterator.cycle}">
+                                            <f:for each="{formData.values}" as="values" iteration="valuesIterator">
+                                                <f:if condition="{values.value}">
+                                                    <tr>
+                                                        <td><strong>{values.label}</strong></td>
+                                                        <td>
+                                                            <f:if condition="{othman:isArray(object: '{values.value}')}">
+                                                                <f:then>
+                                                                    <ul>
+                                                                        <f:for each="{values.value}" as="item">
+                                                                            <li>
+                                                                                {item}
+                                                                            </li>
+                                                                        </f:for>
+                                                                    </ul>
+                                                                </f:then>
+                                                                <f:else>
+                                                                    {values.value}
+                                                                </f:else>
+                                                            </f:if>
+                                                        </td>
+                                                    </tr>
+                                                    <f:if condition="{valuesIterator.isLast}">
+                                                        <tr>
+                                                            <td colspan="2"> {f:format.date(date: '{formData.crdate}',format: 'd.m.Y H:i')}</td>
+                                                        </tr>
+                                                    </f:if>
+                                                </f:if>
+                                            </f:for>
+                                        </table>
+                                        <label class="text-area-box stacked">
+                                            <textarea class="print-footer print-textarea" name="print-footer"
+                                                      oninput="this.parentNode.dataset.value = this.value" rows="1"
+                                                      placeholder="{f:translate(key: 'LLL:EXT:othman_saveformtodb/Resources/Private/Language/locallang_be.xlf:savetodb.listbyformidentifier.print.print-footer')}"></textarea>
+                                        </label>
+
+                                        <a href="#" class="btn btn-default" onclick="printContent(this)" data-psrint-table-id="table-{formDataIterator.cycle}">
+                                            <i class="fa fa-print" style="font-size: 16px"></i>
+                                            <f:translate key="LLL:EXT:othman_saveformtodb/Resources/Private/Language/locallang_be.xlf:savetodb.listbyformidentifier.print"/>
+                                        </a>
+
+
+                                        <hr class="bg-dark">
+                                    </div>
+                                </div>
+                            </f:for>
+
+                            <f:alias map="{pagination:downloadsPaginator.pagination, paginator:downloadsPaginator.paginator, name:downloadsPaginator.name}">
+                                <f:render partial="Pagination" arguments="{_all}"/>
+                            </f:alias>
+                        </othman:pagination.paginate>
+                    </div>
+                </div>
+            </div>
+        </f:then>
+    </f:if>
+</f:section>
+
+<f:section name="DeleteButton">
+    <span id="email-{formData.uid}"
+          title="{f:translate(key: 'LLL:EXT:othman_saveformtodb/Resources/Private/Language/locallang_be.xlf:savetodb.listbyformidentifier.delete-this-email')}"
+          class="btn btn-default btn-sm"
+          data-action-handler="delete"
+          data-uid="{formData.uid}"
+          style="margin-right: 5px"
+    >
+        <core:icon identifier="actions-edit-delete" size="small"/>
+    </span>
+</f:section>
+</html>
